@@ -1,7 +1,7 @@
 # Virtual box for Luther College's Ansible playbooks
 
 ## Introduction
-The luther-deploy repository contains an Ubuntu virtual box with the GitHub repository https://github.com/luthercollege/ansible. It has a more current version of Ansible installed than is present on Mac OSX so newer Ansible features can be used. It also ensures that developers are using the same Linux platform for deployment
+The luther-deploy-virtualbox repository contains an Ubuntu virtual box with the GitHub repository https://github.com/luthercollege/ansible. It has a more current version of Ansible installed than is present on Mac OSX so newer Ansible features can be used. It also ensures that developers are using the same Linux platform for deployment
 
 ## Getting started
 - make sure you have access to the private repository https://github.com/luthercollege/ansible
