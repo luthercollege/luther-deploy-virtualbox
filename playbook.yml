@@ -1,0 +1,67 @@
+---
+- hosts: all
+  vars:
+    http_port: 80
+    max_clients: 200
+    web_root_path: /var/www
+  user: vagrant
+  become: yes
+  tasks:
+  - name: basic installs
+    apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=86400
+    with_items:
+      - curl
+      - git
+      - software-properties-common  #python
+
+  - name: get latest version of ansible
+    apt_repository: repo=ppa:ansible/ansible state=present update_cache=yes 
+
+  - name: install ansible
+    apt: pkg=ansible state=present update_cache=yes cache_valid_time=86400
+
+#  - name: assures /vagrant/settings dir exists
+#    file: path=/vagrant/settings state=directory
+
+  - name: add your username, which is needed for running ansible playbooks 
+    user: name={{ lookup('env','USER') }} generate_ssh_key=yes groups="sudo" append=yes state=present
+
+  - name: copy your private key to your username for access to github 
+    copy: src=~/.ssh/id_rsa dest=/home/{{ lookup('env','USER') }}/.ssh/id_rsa mode=0600 
+
+  - name: copy your public key to your username
+    copy: src=~/.ssh/id_rsa.pub dest=/home/{{ lookup('env','USER') }}/.ssh/id_rsa.pub mode=0644 
+
+  - name: append id_rsa.pub to ssh authorized_keys file
+    shell: cat /home/{{ lookup('env','USER') }}/.ssh/id_rsa.pub >> /home/{{ lookup('env','USER') }}/.ssh/authorized_keys
+
+#  - name: copy your private key to vagrant user for access to github 
+#    copy: src=~/.ssh/id_rsa dest=/home/vagrant/.ssh/id_rsa mode=0600 
+
+#  - name: copy your public key to vagrant user 
+#    copy: src=~/.ssh/id_rsa.pub dest=/home/vagrant/.ssh/id_rsa.pub mode=0644 
+
+  - name: install Luther ansible playbook github repository
+    git: repo="git@github.com:luthercollege/ansible.git"
+         dest="/home/{{ lookup('env','USER') }}/ansible"
+         version="master"
+         accept_hostkey="yes"
+         key_file=/home/{{ lookup('env','USER') }}/.ssh/id_rsa
+    ignore_errors: yes
+
+#  - name: install Luther ansible playbook github repository
+#    git: repo="git@github.com:luthercollege/ansible.git"
+#         dest="/vagrant/ansible"
+#         version="master"
+#         accept_hostkey="yes"
+#         key_file=/home/{{ lookup('env','USER') }}/.ssh/id_rsa
+#    ignore_errors: yes
+
+  - name: change the owner of the ansible repo to your username
+    file: path="/home/{{ lookup('env','USER') }}/ansible" owner="{{ lookup('env','USER') }}" group="{{ lookup('env','USER') }}" recurse=yes
+
+#  - name: change the owner of the ansible repo to your username
+#    file: path="/vagrant/ansible" owner="{{ lookup('env','USER') }}" group="{{ lookup('env','USER') }}" recurse=yes
+
+#  - name: create symlink for ansible repository to your home directory 
+#    file: src="/home/{{ lookup('env','USER') }}/ansible" dest="/vagrant/ansible" owner="{{ lookup('env','USER') }}" group="{{ lookup('env','USER') }}" state=link force=yes
