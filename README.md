@@ -21,4 +21,4 @@ The luther-deploy-virtualbox repository contains an Ubuntu virtual box with the 
 - `cd ~/ansible` to  to view the contents of the Luther College ansible playbooks used for deployment
 - test connection to reasondev.luther.edu by typing `ansible reasondev -m ping -vvv`
 - deploy to reasondev.luther.edu by entering `ansible-playbook site.yml --limit reasondev -K --tags=deploy`
-- git is installed so you can commit and push any changes you made to the Luther ansible repository, or fetch, merge, and rebase updates made by other developers directly from the virtual box
+- git is installed so you can commit and push any changes you made to the Luther ansible repository, or fetch, merge, and rebase updates made by other developers directly from the virtual box. (Note that before you commit to Github initially you will need to add the name and email associated with your Github account to ~/.gitconfig: `git config --global user.email "you@example.com"` and `git config --global user.name "Your Name"`)
