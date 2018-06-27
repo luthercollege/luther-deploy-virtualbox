@@ -1,7 +1,7 @@
 # Virtual box for Luther College's Ansible playbooks
 
 ## Introduction
-The luther-deploy-virtualbox repository contains an Ubuntu virtual box with the GitHub repository https://github.com/luthercollege/ansible. It has a more current version of Ansible installed than is present on Mac OSX so newer Ansible features can be used. It also ensures that developers are using the same Linux platform for deployment
+The luther-deploy-virtualbox repository contains an Ubuntu virtual box with the GitHub repository https://github.com/luthercollege/ansible. It has a more current version of Ansible installed than is present on Mac OSX so newer Ansible features can be used. It also ensures that developers are using the same Linux platform for deployment.
 
 ## Getting started
 - make sure you have access to the private repository https://github.com/luthercollege/ansible
@@ -11,9 +11,9 @@ The luther-deploy-virtualbox repository contains an Ubuntu virtual box with the 
 
 - download and install the virtual box app (https://www.virtualbox.org/wiki/Downloads)
 - download and install Vagrant (https://www.vagrantup.com/downloads.html)
-- clone or download the contents of this repository
-- open a terminal application and `cd` into the luther-deploy directory
-- type `vagrant up`
+- clone or download the contents of this repository by opening a terminal window and typing `git clone git@github.com:luthercollege/luther-deploy-virtualbox.git`
+- then in the same terminal application: `cd luther-deploy-virtualbox`
+- type `vagrant up` to start and provision the virtual box (may take a few minutes)
 
 ## Using for deployment
 - once the virtual box is up and running type `vagrant ssh` to access at IP address 192.168.56.110
