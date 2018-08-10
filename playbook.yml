@@ -49,6 +49,12 @@
          key_file=/home/{{ lookup('env','USER') }}/.ssh/id_rsa
     ignore_errors: yes
 
+  - name: make vim the default editor for git
+    git_config:
+      name: core.editor
+      scope: system
+      value: vim
+
 #  - name: install Luther ansible playbook github repository
 #    git: repo="git@github.com:luthercollege/ansible.git"
 #         dest="/vagrant/ansible"
