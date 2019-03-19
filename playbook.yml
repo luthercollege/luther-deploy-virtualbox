@@ -35,6 +35,9 @@
   - name: append id_rsa.pub to ssh authorized_keys file
     shell: cat /home/{{ lookup('env','USER') }}/.ssh/id_rsa.pub >> /home/{{ lookup('env','USER') }}/.ssh/authorized_keys
 
+  - name: add your .gitconfig file
+    copy: src=~/.gitconfig dest=/home/{{ lookup('env','USER') }}/.gitconfig mode=0644
+
 #  - name: copy your private key to vagrant user for access to github 
 #    copy: src=~/.ssh/id_rsa dest=/home/vagrant/.ssh/id_rsa mode=0600 
 
