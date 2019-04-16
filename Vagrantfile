@@ -4,8 +4,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "trusty64"
-  config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box"
+  config.vm.box = "bento/ubuntu-14.04"
 
   # Create a forwarded port mapping to the host machine
   # config.vm.network :forwarded_port, guest: 80, host: 8080
