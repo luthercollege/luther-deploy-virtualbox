@@ -9,8 +9,11 @@ The luther-deploy-virtualbox repository contains an Ubuntu virtual box with the 
 - at a terminal prompt type `ssh -T git@github.com` to test your connection to your github account
 - if the connection fails then see https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 
+- assuming your on a Mac OS machine, confirm that the XCode command line tools are installed: xcode-select --install
 - download and install the virtual box app (https://www.virtualbox.org/wiki/Downloads)
 - download and install Vagrant (https://www.vagrantup.com/downloads.html)
+- pip is needed: sudo easy_install pip
+- you'll need Ansible locally to configure the VM: sudo pip install ansible --quiet
 - clone or download the contents of this repository by opening a terminal window and typing `git clone git@github.com:luthercollege/luther-deploy-virtualbox.git`
 - then in the same terminal application: `cd luther-deploy-virtualbox`
 - type `vagrant up` to start and provision the virtual box (may take a few minutes)
