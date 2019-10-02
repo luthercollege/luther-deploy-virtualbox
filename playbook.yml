@@ -38,12 +38,6 @@
   - name: add your .gitconfig file
     copy: src=~/.gitconfig dest=/home/{{ lookup('env','USER') }}/.gitconfig mode=0644
 
-#  - name: copy your private key to vagrant user for access to github 
-#    copy: src=~/.ssh/id_rsa dest=/home/vagrant/.ssh/id_rsa mode=0600 
-
-#  - name: copy your public key to vagrant user 
-#    copy: src=~/.ssh/id_rsa.pub dest=/home/vagrant/.ssh/id_rsa.pub mode=0644 
-
   - name: install Luther ansible playbook github repository
     git: repo="git@github.com:luthercollege/ansible.git"
          dest="/home/{{ lookup('env','USER') }}/ansible"
@@ -51,6 +45,9 @@
          accept_hostkey="yes"
          key_file=/home/{{ lookup('env','USER') }}/.ssh/id_rsa
     ignore_errors: yes
+
+  - name: need reasonservers known_hosts file for deployment 
+    command: cp /home/{{ lookup('env','USER') }}/ansible/roles/reasonservers/files/known_hosts_reasonservers /home/{{ lookup('env','USER') }}/.ssh/known_hosts 
 
   - name: make vim the default editor for git
     git_config:
