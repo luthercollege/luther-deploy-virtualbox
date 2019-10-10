@@ -4,8 +4,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "bento/ubuntu-16.04"
-  config.vm.box_version = "= 201906.18.0"
+  config.vm.box = "ubuntu/xenial64"
 
   # Create a forwarded port mapping to the host machine
   # config.vm.network :forwarded_port, guest: 80, host: 8080
@@ -24,6 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |virtualbox|
     virtualbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     virtualbox.customize ["modifyvm", :id, "--memory", "1024"]
+    virtualbox.customize ["modifyvm", :id, "--uartmode1", "disconnected"]
   end
 
   # If true, then any SSH connections made will enable agent forwarding.
