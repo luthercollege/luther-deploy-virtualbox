@@ -4,7 +4,8 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu/xenial64"
+  # if "default: SSH auth method: private key" hangs on "vagrant up" then try a different vm box
+  config.vm.box = "bento/ubuntu-18.04"
 
   # Create a forwarded port mapping to the host machine
   # config.vm.network :forwarded_port, guest: 80, host: 8080
