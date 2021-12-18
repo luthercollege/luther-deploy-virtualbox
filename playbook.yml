@@ -47,7 +47,7 @@
     ignore_errors: yes
 
   - name: need reasonservers known_hosts file for deployment 
-    command: cp /home/{{ lookup('env','USER') }}/ansible/roles/reasonservers/files/known_hosts_reasonservers /home/{{ lookup('env','USER') }}/.ssh/known_hosts 
+    command: cp /home/{{ lookup('env','USER') }}/ansible/roles/reasonservers/files/known_hosts /home/{{ lookup('env','USER') }}/.ssh/known_hosts
 
   - name: make vim the default editor for git
     git_config:
